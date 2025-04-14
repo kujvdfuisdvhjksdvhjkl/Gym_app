@@ -1,0 +1,73 @@
+openapi: "3.0.0"
+info:
+  title: "Gym Client API"
+  version: "1.0.0"
+  description: >
+    API для управления личными кабинетами клиентов тренажёрного зала. 
+    Этот документ является контрактом API, определяющим доступные эндпоинты, 
+    модели данных и форматы запросов/ответов, которые используются для 
+    взаимодействия между backend и frontend частями.
+servers:
+  - url: "http://localhost:3000"
+    description: "Локальный сервер разработки"
+paths:
+  /auth/login:
+    post:
+      summary: "Вход в систему"
+      description: "Аутентификация пользователя по email и паролю с выдачей JWT токена."
+      tags:
+        - "Authentication"
+      requestBody:
+        description: "Данные для аутентификации (email и password)"
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/LoginDto"
+      responses:
+        "200":
+          description: "Успешная аутентификация, возвращает JWT токен."
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/LoginResponse"
+        "401":
+          description: "Ошибка авторизации — неверные email или пароль."
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  statusCode:
+                    type: integer
+                    example: 401
+                  message:
+                    type: string
+                    example: "Некорректные email или пароль"
+components:
+  schemas:
+    LoginDto:
+      type: object
+      description: "DTO для аутентификации пользователя"
+      properties:
+        email:
+          type: string
+          format: email
+          description: "Электронная почта пользователя."
+          example: "admin@example.com"
+        password:
+          type: string
+          format: password
+          description: "Пароль пользователя."
+          example: "admin123"
+      required:
+        - email
+        - password
+    LoginResponse:
+      type: object
+      description: "Ответ на успешную аутентификацию"
+      properties:
+        access_token:
+          type: string
+          description: "JWT токен, который нужно использовать для аутентификации последующих запросов."
+          example: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9..."
