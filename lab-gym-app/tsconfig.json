@@ -1,0 +1,8 @@
+{
+    "compilerOptions": {
+      "baseUrl": ".",
+      "paths": {
+        "@lab-gym/types": ["libs/types/src"]
+      }
+    }
+  }
