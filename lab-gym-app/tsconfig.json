@@ -1,8 +1,20 @@
 {
     "compilerOptions": {
+      "target": "ESNext",
+      "module": "ESNext",
+      "jsx": "react-jsx",
+      "strict": true,
+      "moduleResolution": "node",
       "baseUrl": ".",
+      "esModuleInterop": true,
+      "allowSyntheticDefaultImports": true,     
       "paths": {
         "@lab-gym/types": ["libs/types/src"]
       }
-    }
+    },
+    "include": [
+      "apps/**/*",
+      "libs/**/*"
+    ]
   }
+  

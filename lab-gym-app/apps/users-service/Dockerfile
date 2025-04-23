@@ -1,7 +1,7 @@
 # Dockerfile для микросервиса users-service
 
 # Используем официальный образ Node.js на базе Alpine Linux
-FROM node:16-alpine
+FROM node:22-alpine AS build
 
 # Устанавливаем рабочую директорию в контейнере
 WORKDIR /app

@@ -1,0 +1,16 @@
+// apps/frontend/tsconfig.build.json
+{
+  "extends": "./tsconfig.json",
+  "compilerOptions": {
+    "outDir": "./dist",
+    "target": "ES2019",
+    "lib": ["DOM", "ES2019"],
+    "moduleResolution": "node",
+    "skipLibCheck": true,
+    "strict": true
+  },
+  "include": [
+    "src",
+    "../../libs/types/src"
+  ]
+}
